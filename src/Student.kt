@@ -1,6 +1,8 @@
-data class Student(val name: String, val observable: Teacher) : Observer {
+class Student(val name: String, vararg val observable: Teacher) : Observer {
 
     override fun update() {
-        println("Hola $name the professor ${observable.name} has uploaded a new homework ${observable.getLastedHomework()?.title}")
+        observable.forEach { obs ->
+            println("Hola $name the professor ${obs.name} has uploaded a new homework ${obs.getLastedHomework()?.title}")
+        }
     }
 }
